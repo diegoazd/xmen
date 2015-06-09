@@ -1,4 +1,6 @@
 .gradle/
 .lazybones/
 build/
+*.iml
+.idea/
 
