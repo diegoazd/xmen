@@ -40,22 +40,32 @@ public class FindMutant {
     }
 
     public char[] extractHorizontalAdnSequence(char[][] adn, int position, int row) {
-        char[] adnSequence = new char[4];
-        byte subArrayPosition = 0;
-        for(int i = position; i < position + 4; i++) {
-            adnSequence[subArrayPosition++] = adn[row][i];
-        }
+      char[] adnSequence = new char[4];
+      byte subArrayPosition = 0;
+      for(int i = position; i < position + 4; i++) {
+          adnSequence[subArrayPosition++] = adn[row][i];
+      }
 
-        return adnSequence;
+      return adnSequence;
     }
 
     public char[] extractVerticalAdnSequence(char[][] adn, int position, int column) {
+      char[] adnSequence = new char[4];
+      byte subArrayPosition = 0;
+      for(int i = position; i < position + 4; i++)
+          adnSequence[subArrayPosition++] = adn[i][column];
 
-        char[] adnSequence = new char[4];
-        byte subArrayPosition = 0;
-        for(int i = position; i < position + 4; i++)
-            adnSequence[subArrayPosition++] = adn[i][column];
+      return adnSequence;
+    }
+    
+    public char[] extractCrosswiseAdnSequence(char[][] adn, int row, int column) {
+      char[] adnSequence = new char[4];
+      byte subArrayPosition = 0;
+      for(int i = row; i < row + 4; i++) {
+        adnSequence[subArrayPosition] = adn[row+subArrayPosition][column+subArrayPosition];
+        subArrayPosition++;
+      }  
 
-        return adnSequence;
+      return adnSequence;
     }
 }

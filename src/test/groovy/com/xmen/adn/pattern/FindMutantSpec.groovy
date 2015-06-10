@@ -128,5 +128,22 @@ class FindMutantSpec extends spock.lang.Specification{
     then:
       verticalSubArray == ['A','T','C','G']
     }
+    
+    void "should extract adn for matrix in crosswise"() {
+    setup:
+      FindMutant findMutant = new FindMutant()
+    and:
+      char[][] adn = new char[6][6]
+      adn[0][0] = 'A'
+      adn[1][1] = 'T'
+      adn[2][2] = 'C'
+      adn[3][3] = 'G'
+      adn[4][4] = 'G'
+      adn[5][5] = 'G'
+    when:
+      char[] subArray = findMutant.extractCrosswiseAdnSequence(adn,2,2)
+    then:
+      subArray == ['C','G', 'G', 'G']
+    }
 }
 
