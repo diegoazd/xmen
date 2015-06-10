@@ -6,7 +6,7 @@ class MutantHelperSpec extends spock.lang.Specification {
   setup:
     MutantHelper mutantHelper = new MutantHelper()
   and:
-    String[] sequence = ["AAAA","BBBB","CCCC","DDDD"]
+    String[] sequence = ["AAAA","TTTT","CCCC","GGGG"]
   when:
     char[][] adn = mutantHelper.transformInAdnSequence(sequence)
   then:

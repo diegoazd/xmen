@@ -12,7 +12,6 @@ ruleset {
         'AbstractClassWithPublicConstructor' enabled: false
     }
     ruleset('rulesets/dry.xml')
-    ruleset('rulesets/exceptions.xml')
     ruleset('rulesets/formatting.xml')
     ruleset('rulesets/generic.xml')
     ruleset('rulesets/groovyism.xml')
