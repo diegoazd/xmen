@@ -1,5 +1,7 @@
 package com.xmen.adn
 
+import com.xmen.adn.resource.MutantResource
+
 import com.yammer.dropwizard.Service
 import com.yammer.dropwizard.assets.AssetsBundle
 import com.yammer.dropwizard.config.Bootstrap
@@ -43,5 +45,6 @@ class FindMutantService extends Service<FindMutantConfiguration> {
     @Override
     public void run(FindMutantConfiguration configuration,
                     Environment environment) throws ClassNotFoundException {
+      environment.addResource(new MutantResource())
     }
 }
