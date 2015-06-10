@@ -19,7 +19,6 @@ public class FindMutant {
 
                if(isBetweenEdges(i,arraySize)) {
                    subAdnSequence = extractVerticalAdnSequence(adn, i, j);
-                   System.out.println(subAdnSequence);
                    position = findPattern.findPattern(subAdnSequence);
                    if(position == 3)
                        return true;
@@ -35,7 +34,7 @@ public class FindMutant {
     public char[] extractHorizontalAdnSequence(char[][] adn, int position, int row) {
         char[] adnSequence = new char[4];
         byte subArrayPosition = 0;
-        for(int i = position; i < 4; i++) {
+        for(int i = position; i < position + 4; i++) {
             adnSequence[subArrayPosition++] = adn[row][i];
         }
 
@@ -43,9 +42,10 @@ public class FindMutant {
     }
 
     public char[] extractVerticalAdnSequence(char[][] adn, int position, int column) {
+
         char[] adnSequence = new char[4];
         byte subArrayPosition = 0;
-        for(int i = position; i < 4; i++)
+        for(int i = position; i < position + 4; i++)
             adnSequence[subArrayPosition++] = adn[i][column];
 
         return adnSequence;
