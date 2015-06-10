@@ -8,9 +8,18 @@ public class FindMutant {
        int arraySize = adn[0].length;
        for(int i=0; i < arraySize; i++)
            for(int j=0; j < arraySize; j++) {
+               char [] subAdnSequence;
+               byte position;
                if(isBetweenEdges(j,arraySize)) {
-                   char [] subAdnSequence = extractHorizontalAdnSequence(adn, j, i);
-                   byte position = findPattern.findPattern(subAdnSequence);
+                   subAdnSequence = extractHorizontalAdnSequence(adn, j, i);
+                   position = findPattern.findPattern(subAdnSequence);
+                   if(position == 3)
+                       return true;
+               }
+
+               if(isBetweenEdges(i,arraySize)) {
+                   subAdnSequence = extractVerticalAdnSequence(adn, i, j);
+                   position = findPattern.findPattern(subAdnSequence);
                    if(position == 3)
                        return true;
                }
