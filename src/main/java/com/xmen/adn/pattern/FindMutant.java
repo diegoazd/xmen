@@ -31,4 +31,14 @@ public class FindMutant {
 
         return adnSequence;
     }
+
+    public char[] extractVerticalAdnSequence(char[][] adn, int position, int column) {
+        char[] adnSequence = new char[4];
+        byte subArrayPosition = 0;
+        for(int i = position; i < 4; i++) {
+            adnSequence[subArrayPosition++] = adn[i][column];
+        }
+
+        return adnSequence;
+    }
 }

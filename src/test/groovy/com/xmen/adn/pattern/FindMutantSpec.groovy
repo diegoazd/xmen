@@ -80,5 +80,9 @@ class FindMutantSpec extends spock.lang.Specification{
         then:
         !isAValidSequence
     }
+
+    void "should extract adn for matrix in vertical"() {
+    s
+    }
 }
 
