@@ -34,7 +34,31 @@ class FindMutantSpec extends spock.lang.Specification{
       isAValidSequence
     }
 
-    void "should not find a horizontal pattern"() {
+    void "should find an vertical pattern"() {
+    setup:
+      FindMutant findMutant = new FindMutant()
+    and:
+      char[][] adn = new char[6][6]
+      int value = 48
+      for(int i = 0; i < adn[0].size(); i++)
+        for(int j= 0; j < adn[0].size(); j++) {
+          adn[i][j] = (char)value++
+        }
+    and:
+      adn[0][0] = 'A'
+      adn[1][0] = 'A'
+      adn[2][0] = 'G'
+      adn[3][0] = 'G'
+      adn[4][0] = 'G'
+      adn[5][0] = 'G'
+    println adn
+    when:
+      boolean isAValidSequence = findMutant.findMutant(adn)
+    then:
+      isAValidSequence
+    }
+
+    void "should not find a pattern"() {
         setup:
         FindMutant findMutant = new FindMutant()
         and:
@@ -45,7 +69,6 @@ class FindMutantSpec extends spock.lang.Specification{
             adn[i][j] = (char)value
             value++
           }
-        println adn
         when:
         boolean isAValidSequence = findMutant.findMutant(adn)
         then:
