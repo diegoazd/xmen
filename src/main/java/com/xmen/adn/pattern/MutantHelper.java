@@ -9,4 +9,14 @@ public class MutantHelper {
         adn[i][j] = sequence[i].charAt(j);
     return adn;
   }
+
+  public boolean validArraySize(String[] array) {
+    if(array == null || array.length == 0)
+      return false;
+
+    if(array.length != array[0].length())
+      return false;
+
+    return true;
+  }
 }
