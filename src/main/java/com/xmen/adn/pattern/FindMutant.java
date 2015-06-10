@@ -5,6 +5,33 @@ public class FindMutant {
     public final static byte PATTERN_LENGTH = 3;
     FindPattern findPattern = new FindPattern();
 
+    private byte findHorizontalPatterAndAddSequence(char[][] adn, 
+        int column, int row, byte sequenceNumbers) {
+      char[] subAdnSequence = extractHorizontalAdnSequence(adn, column, row);
+      sequenceNumbers = addSequenceIfFindPattern(subAdnSequence, 
+          sequenceNumbers);
+
+      return sequenceNumbers;
+    }
+    
+    private byte findVerticalPatterAndAddSequence(char[][] adn, 
+        int column, int row, byte sequenceNumbers) {
+      char[] subAdnSequence = extractVerticalAdnSequence(adn, row, column);
+      sequenceNumbers = addSequenceIfFindPattern(subAdnSequence, 
+          sequenceNumbers);
+
+      return sequenceNumbers;
+    }
+
+    private byte findCrosswisePatternAndAddSequence(char[][] adn,
+        int column, int row, byte sequenceNumbers) {
+      char[] subAdnSequence = extractCrosswiseAdnSequence(adn, row, column);
+      sequenceNumbers = addSequenceIfFindPattern(subAdnSequence, 
+          sequenceNumbers);
+
+      return sequenceNumbers;
+    }
+
     public boolean findMutant(char adn[][]) {
       int arraySize = adn[0].length;
       byte sequenceNumbers = 0;
@@ -12,27 +39,24 @@ public class FindMutant {
         for(int j=0; j < arraySize; j++) {
         char [] subAdnSequence;
         if(isBetweenEdges(j,arraySize)) {
-          subAdnSequence = extractHorizontalAdnSequence(adn, j, i);
-          sequenceNumbers = addSequenceIfFindPattern(subAdnSequence, 
-              sequenceNumbers);
+          sequenceNumbers = findHorizontalPatterAndAddSequence(
+              adn, j, i, sequenceNumbers);
 
           if(sequenceNumbers == NUMBER_OF_SEQUENCES)
             return true;
         }
 
         if(isBetweenEdges(i,arraySize)) {
-          subAdnSequence = extractVerticalAdnSequence(adn, i, j);
-          sequenceNumbers = addSequenceIfFindPattern(subAdnSequence, 
-              sequenceNumbers);
+          sequenceNumbers = findVerticalPatterAndAddSequence(adn, 
+              j, i, sequenceNumbers);
           
           if(sequenceNumbers == NUMBER_OF_SEQUENCES)
             return true;
         }
         
         if(isBetweenEdges(i,arraySize) && isBetweenEdges(j, arraySize)) {
-          subAdnSequence = extractCrosswiseAdnSequence(adn, i, j);
-          sequenceNumbers = addSequenceIfFindPattern(subAdnSequence, 
-              sequenceNumbers);
+          sequenceNumbers = findCrosswisePatternAndAddSequence(adn, 
+              j, i, sequenceNumbers);
           
           if(sequenceNumbers == NUMBER_OF_SEQUENCES)
             return true;
