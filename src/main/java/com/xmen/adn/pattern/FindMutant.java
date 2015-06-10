@@ -1,7 +1,8 @@
 package com.xmen.adn.pattern;
 
 public class FindMutant {
-
+    public final static byte NUMBER_OF_SEQUENCES = 2;
+    public final static byte PATTERN_LENGTH = 3;
     FindPattern findPattern = new FindPattern();
 
     public boolean findMutant(char adn[][]) {
@@ -14,20 +15,20 @@ public class FindMutant {
         if(isBetweenEdges(j,arraySize)) {
           subAdnSequence = extractHorizontalAdnSequence(adn, j, i);
           position = findPattern.findPattern(subAdnSequence);
-          if(position == 3)
+          if(position == PATTERN_LENGTH)
             sequenceNumbers++;
 
-          if(sequenceNumbers == 2)
+          if(sequenceNumbers == NUMBER_OF_SEQUENCES)
             return true;
         }
 
         if(isBetweenEdges(i,arraySize)) {
           subAdnSequence = extractVerticalAdnSequence(adn, i, j);
           position = findPattern.findPattern(subAdnSequence);
-          if(position == 3)
+          if(position == PATTERN_LENGTH)
             sequenceNumbers++;
           
-          if(sequenceNumbers == 2)
+          if(sequenceNumbers == NUMBER_OF_SEQUENCES)
             return true;
         }
        }
