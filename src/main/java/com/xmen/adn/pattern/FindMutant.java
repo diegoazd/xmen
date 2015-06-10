@@ -31,6 +31,16 @@ public class FindMutant {
           if(sequenceNumbers == NUMBER_OF_SEQUENCES)
             return true;
         }
+        
+        if(isBetweenEdges(i,arraySize) && isBetweenEdges(j, arraySize)) {
+          subAdnSequence = extractCrosswiseAdnSequence(adn, i, j);
+          position = findPattern.findPattern(subAdnSequence);
+          if(position == PATTERN_LENGTH)
+            sequenceNumbers++;
+          
+          if(sequenceNumbers == NUMBER_OF_SEQUENCES)
+            return true;
+        }
        }
       return false;
     }

@@ -93,6 +93,32 @@ class FindMutantSpec extends spock.lang.Specification{
     then:
       isAValidSequence
     }
+    
+    void "should find a crosswise pattern"() {
+    setup:
+      FindMutant findMutant = new FindMutant()
+    and:
+      char[][] adn = new char[6][6]
+      int value = 48
+      for(int i = 0; i < adn[0].size(); i++)
+        for(int j= 0; j < adn[0].size(); j++) {
+          adn[i][j] = (char)value++
+        }
+    and:
+      adn[2][2] = 'G'
+      adn[3][3] = 'G'
+      adn[4][4] = 'G'
+      adn[5][5] = 'G'
+    and:
+      adn[1][0] = 'C'
+      adn[2][1] = 'C'
+      adn[3][2] = 'C'
+      adn[4][3] = 'C'
+    when:
+      boolean isAValidSequence = findMutant.findMutant(adn)
+    then:
+      isAValidSequence
+    }
 
     void "should not find a pattern"() {
         setup:
